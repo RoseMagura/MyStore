@@ -12,6 +12,9 @@ export class CartComponent implements OnInit {
 
   cart: Cart;
 
+  checking_out: boolean = false;
+  order = {};
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -23,7 +26,8 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void{
-    console.log('checking out');
+    this.checking_out = true;
+    // console.log('checking out');
   }
 
   delete(product: Product): void{
