@@ -1,3 +1,6 @@
+<h2 routerLink="/cart">Cart
+    <div *ngIf="cart">{{cart.amount | currency}}</div>
+</h2>
 <div *ngIf="product">
     <ul>
         <h3>{{product.name}}</h3>
@@ -5,7 +8,7 @@
         <div>{{product.description}}</div>
         <div>{{product.price | currency}}</div>
         <img src={{product.url}} alt={{product.name}}/>
-        <button>Add To Cart</button>
+        <button (click)="addToCart(product)">Add To Cart</button>
     </ul>
 </div>
 <button routerLink="/cart">View Cart</button>

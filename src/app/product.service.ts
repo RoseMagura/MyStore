@@ -12,13 +12,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-//   getProduct(id: number): Observable<Product> {
-//     const all = this.http.get<Product[]>(this.dataUrl);
-//     // return all.map(all => all.filter(item => item.id === id));
-//     console.log(all);
-//     return all[0];
-//   }
-
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.dataUrl);
   }

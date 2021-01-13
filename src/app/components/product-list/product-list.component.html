@@ -1,4 +1,7 @@
 <h2>Product List</h2>
+<h2 routerLink="/cart">Cart
+    <div *ngIf="cart">{{cart.amount | currency}}</div>
+</h2>
 <div class="product-container">
     <ul class="product-index">
         <li routerLink="/detail/{{product.id}}"
@@ -8,7 +11,7 @@
             <div>{{product.description}}</div>
             <div>{{product.price | currency}}</div>
             <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
-            <button>Add To Cart</button>
+            <button (click)="addToCart(product)">Add To Cart</button>
         </li>
     </ul>
 </div>
