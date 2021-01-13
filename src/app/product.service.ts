@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
-import * as data from '../assets/data.json';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
+  private dataUrl = 'http://localhost:4200/assets/data.json'
 
-  getProduct(id: number): Product {
-    return (data as any).default[id];
-  }
+  constructor(private http: HttpClient) { }
 
-  getProducts(): Product[] {
-    return (data as any).default;
+//   getProduct(id: number): Observable<Product> {
+//     const all = this.http.get<Product[]>(this.dataUrl);
+//     // return all.map(all => all.filter(item => item.id === id));
+//     console.log(all);
+//     return all[0];
+//   }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.dataUrl);
   }
 }

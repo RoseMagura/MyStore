@@ -1,3 +1,12 @@
-<p>product-item-detail works!</p>
+<div *ngIf="product">
+    <ul>
+        <h3>{{product.name}}</h3>
+        <div>{{product.id}}</div>
+        <div>{{product.description}}</div>
+        <div>{{product.price | currency}}</div>
+        <img src={{product.url}} alt={{product.name}}/>
+        <button>Add To Cart</button>
+    </ul>
+</div>
 <button routerLink="/cart">View Cart</button>
 <button routerLink="">Return to Home</button>

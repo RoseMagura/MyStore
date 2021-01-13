@@ -1,12 +1,12 @@
 <h2>Product List</h2>
 <div class="product-container">
     <ul class="product-index">
-        <li *ngFor="let product of products"
-            routerLink="/detail/{{product.id}}">
+        <li routerLink="/detail/{{product.id}}"
+        *ngFor="let product of products">
             <h3>{{product.name}}</h3>
             <div>{{product.id}}</div>
             <div>{{product.description}}</div>
-            <div>{{product.price}}</div>
+            <div>{{product.price | currency}}</div>
             <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
             <button>Add To Cart</button>
         </li>

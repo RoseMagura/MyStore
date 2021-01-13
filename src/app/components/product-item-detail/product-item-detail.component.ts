@@ -9,7 +9,8 @@ import { Product } from '../../product';
   styleUrls: ['./product-item-detail.component.css']
 })
 export class ProductItemDetailComponent implements OnInit {
-
+    
+  //initialize product with correct type
   product: Product;
   
   constructor(
@@ -22,8 +23,10 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   getProduct(): void {
+      // get id from the url params
       const id = +this.route.snapshot.paramMap.get('id');
-      this.productService.getProduct(id)
-    //     .subscribe(product => this.product = product);
+      // get all products and then select the index for the correct id
+      this.productService.getProducts()
+        .subscribe(products => this.product = products[id - 1]);
   }
 }
