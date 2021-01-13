@@ -4,9 +4,10 @@
 </h2>
 <div class="product-container">
     <ul class="product-index">
-        <li routerLink="/detail/{{product.id}}"
-        *ngFor="let product of products">
-            <h3>{{product.name}}</h3>
+        <li *ngFor="let product of products">
+            <h3 routerLink="/detail/{{product.id}}">
+                {{product.name}}
+            </h3>
             <div>{{product.id}}</div>
             <div>{{product.description}}</div>
             <div>{{product.price | currency}}</div>

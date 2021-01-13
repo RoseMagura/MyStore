@@ -42,8 +42,9 @@ export class ProductItemDetailComponent implements OnInit {
   addToCart(product: Product): void {
     const updatedCart: Cart = this.cart;
     updatedCart.num_items++;
-    updatedCart.items.push(product.name);
+    updatedCart.items.push(product);
     updatedCart.amount += product.price;
     this.cartService.setCart(updatedCart);
+    alert('Successfully added item to cart!');
   }
 }

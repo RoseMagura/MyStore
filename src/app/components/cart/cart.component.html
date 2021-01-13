@@ -1,18 +1,18 @@
 <h1>Cart<h1>
-<h3>Total: </h3>
+<h3>Total: {{cart.amount | currency}}</h3>
 <h3>Currently in Cart:</h3>
-<!-- <div class="product-container">
-    <ul class="product-index">
-        <li *ngFor="let product of products"
-            routerLink="/detail/{{product.id}}">
-            <h3>{{product.name}}</h3>
-            <div>{{product.id}}</div>
+<div class="product-container">
+    <ul *ngIf="cart.items.length > 0; else elseBlock" class="product-index">
+        <li *ngFor="let product of cart.items">
+            <h3 routerLink="/detail/{{product.id}}">{{product.name}}</h3>
+            <!-- <div>id: {{product.id}}</div> -->
             <div>{{product.description}}</div>
-            <div>{{product.price}}</div>
+            <div>{{product.price | currency}}</div>
             <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
-            <button>Delete from Cart</button>
+            <button (click)="delete(product)">Remove from Cart</button>
         </li>
     </ul>
-</div> -->
+    <ng-template #elseBlock>No items in cart.</ng-template>
+</div>
 <button routerLink="">Return to Home</button>
-<!-- <button (click)="checkout()">Checkout</button> -->
+<button (click)="checkout()">Checkout</button>
