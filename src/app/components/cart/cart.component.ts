@@ -15,7 +15,11 @@ export class CartComponent implements OnInit {
   cart: Cart;
 
   checking_out: boolean = false;
-  order: Order;
+  order: Order = {
+      name: '',
+      email: '',
+      payment: ''
+  };
 
   constructor(
       private cartService: CartService,

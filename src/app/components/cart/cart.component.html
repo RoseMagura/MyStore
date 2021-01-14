@@ -16,31 +16,32 @@
 </div>
 <button routerLink="">Return to Home</button>
 <button (click)="checkout()">Checkout</button>
-
 <form [hidden]="!checking_out" #orderForm="ngForm"
     (ngSubmit)="onSubmit(orderForm.value)">
-    <label for="name">Name: </label>
-    <input type="text" id="name" required minlength="2"
-        [(ngModel)]="order.name" name="name">
-    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)">
-        <div *ngIf="name.errors.minlength">
-            Name must be at least two characters long
+    <div>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" required minlength="2"
+            [(ngModel)]="order.name" #name="ngModel">
+        <div *ngIf="!name.valid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.minlength">
+                Name must be at least two characters long.
+            </div>
+            <div *ngIf="name.errors.required">
+                Please input name.
+            </div>
         </div>
-        <div *ngIf="name.errors.required">
-            Please input name.
-        </div>
-    </div> -->
+    </div>
     <label for="email">Email: </label>
     <input type="text" id="email" required minlength="8"
-        [(ngModel)]="order.email" name="email">
-    <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        [(ngModel)]="order.email" name="email" #email="ngModel">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
         <div *ngIf="email.errors.minlength">
-            email must be at least two characters long
+            Email must be at least eight characters long.
         </div>
         <div *ngIf="email.errors.required">
             Please input email.
-        </div> -->
-    <!-- </div> -->
+        </div>
+    </div>
     <label for="payment">Payment Type:</label>
     <input type="radio" id="credit" value="credit" required
         [(ngModel)]="order.payment" name="payment">
