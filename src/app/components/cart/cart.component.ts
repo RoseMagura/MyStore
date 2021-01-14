@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/product';
 import { Cart } from '../../cart';
 import { CartService } from '../../cart.service';
+import { Router } from "@angular/router";
+import { Order } from 'src/app/order';
 
 @Component({
   selector: 'app-cart',
@@ -13,9 +15,11 @@ export class CartComponent implements OnInit {
   cart: Cart;
 
   checking_out: boolean = false;
-  order = {};
+  order: Order;
 
-  constructor(private cartService: CartService) { }
+  constructor(
+      private cartService: CartService,
+      private router: Router) { }
 
   ngOnInit(): void {
     this.getCart();
@@ -27,7 +31,6 @@ export class CartComponent implements OnInit {
 
   checkout(): void{
     this.checking_out = true;
-    // console.log('checking out');
   }
 
   delete(product: Product): void{
@@ -37,5 +40,11 @@ export class CartComponent implements OnInit {
     updatedCart.amount -= product.price;
     this.cartService.setCart(updatedCart);
     alert(`You removed ${product.name} from the cart.`)
+  }
+
+  onSubmit(orderForm: Order): void {
+      console.log(`submitted ${orderForm.name}, 
+        ${orderForm.email}, ${orderForm.payment}`);
+      this.router.navigate(['cart/success']);
   }
 }

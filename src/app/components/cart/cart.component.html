@@ -17,19 +17,40 @@
 <button routerLink="">Return to Home</button>
 <button (click)="checkout()">Checkout</button>
 
-<form [hidden]="!checking_out" #orderForm="ngForm">
+<form [hidden]="!checking_out" #orderForm="ngForm"
+    (ngSubmit)="onSubmit(orderForm.value)">
     <label for="name">Name: </label>
-    <input type="text" id="name" required>
-        <!-- [(ngModel)]="order.name"> -->
-        <!-- {{order.name}} -->
-    <!-- <label for="name">Email: </label>
-    <input type="text" id="email" required>
+    <input type="text" id="name" required minlength="2"
+        [(ngModel)]="order.name" name="name">
+    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.minlength">
+            Name must be at least two characters long
+        </div>
+        <div *ngIf="name.errors.required">
+            Please input name.
+        </div>
+    </div> -->
+    <label for="email">Email: </label>
+    <input type="text" id="email" required minlength="8"
+        [(ngModel)]="order.email" name="email">
+    <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors.minlength">
+            email must be at least two characters long
+        </div>
+        <div *ngIf="email.errors.required">
+            Please input email.
+        </div> -->
+    <!-- </div> -->
     <label for="payment">Payment Type:</label>
-    <input type="radio" id="credit" value="credit" required>
+    <input type="radio" id="credit" value="credit" required
+        [(ngModel)]="order.payment" name="payment">
     <label for="credit">Credit Card</label>
-    <input type="radio" id="google" value="google">
+    <input type="radio" id="google" value="google"
+        [(ngModel)]="order.payment" name="payment">
     <label for="google">Google Wallet</label>
-    <input type="radio" id="apple" value="apple">
-    <label for="apple">Apple Pay</label>-->
-    <button routerLink='/cart/success'>Submit</button> 
+    <input type="radio" id="apple" value="apple"
+        [(ngModel)]="order.payment" name="payment">
+    <label for="apple">Apple Pay</label>
+    <button type="submit"
+        [disabled]="!orderForm.form.valid">Submit</button> 
 </form>
