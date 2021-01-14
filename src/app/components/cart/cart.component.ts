@@ -21,6 +21,7 @@ export class CartComponent implements OnInit {
       payment: ''
   };
 
+  options: string[] = ['Credit Card', 'Google Wallet', 'Apple Pay'];
   constructor(
       private cartService: CartService,
       private router: Router) { }

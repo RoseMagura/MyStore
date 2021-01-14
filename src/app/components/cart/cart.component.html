@@ -43,15 +43,11 @@
         </div>
     </div>
     <label for="payment">Payment Type:</label>
-    <input type="radio" id="credit" value="credit" required
-        [(ngModel)]="order.payment" name="payment">
-    <label for="credit">Credit Card</label>
-    <input type="radio" id="google" value="google"
-        [(ngModel)]="order.payment" name="payment">
-    <label for="google">Google Wallet</label>
-    <input type="radio" id="apple" value="apple"
-        [(ngModel)]="order.payment" name="payment">
-    <label for="apple">Apple Pay</label>
+    <div *ngFor="let o of options">
+        <input type="radio" [value]="o" [id]="o" required
+            [(ngModel)]="order.payment" name="payment">
+        <label for={{o}}>{{o}}</label>
+    </div>
     <button type="submit"
         [disabled]="!orderForm.form.valid">Submit</button> 
 </form>
