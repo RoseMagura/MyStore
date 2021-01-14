@@ -19,9 +19,9 @@
 
 <form [hidden]="!checking_out" #orderForm="ngForm">
     <label for="name">Name: </label>
-    <input type="text" id="name" required 
-        [(ngModel)]="order.name">
-        {{order.name}}
+    <input type="text" id="name" required>
+        <!-- [(ngModel)]="order.name"> -->
+        <!-- {{order.name}} -->
     <!-- <label for="name">Email: </label>
     <input type="text" id="email" required>
     <label for="payment">Payment Type:</label>
@@ -30,6 +30,6 @@
     <input type="radio" id="google" value="google">
     <label for="google">Google Wallet</label>
     <input type="radio" id="apple" value="apple">
-    <label for="apple">Apple Pay</label>
-    <button>Submit</button> -->
+    <label for="apple">Apple Pay</label>-->
+    <button routerLink='/cart/success'>Submit</button> 
 </form>

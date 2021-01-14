@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cart } from './cart';
+import { Cart, MyCart } from './cart';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,16 @@ export class CartService {
 
   getCart(): Cart {
     if(this.cart === undefined) {
-        this.cart = {
-            amount: 0,
-            num_items: 0,
-            items: []
-        }
+        this.cart = new MyCart(0, [], 0);
     }
     return this.cart;
   }
 
   setCart(updatedCart: Cart): void {
     this.cart = updatedCart;
+  }
+
+  emptyCart(): void {
+      this.cart = new MyCart(0, [], 0);
   }
 }
