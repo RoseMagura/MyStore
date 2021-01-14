@@ -1,0 +1,37 @@
+<div *ngIf="display">
+    <form #orderForm="ngForm"
+        (ngSubmit)="onSubmit(orderForm.value)">
+    <div>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" required minlength="2"
+            [(ngModel)]="order.name" #name="ngModel">
+        <div *ngIf="!name.valid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.minlength">
+                Name must be at least two characters long.
+            </div>
+            <div *ngIf="name.errors.required">
+                Please input name.
+            </div>
+        </div>
+    </div>
+    <label for="email">Email: </label>
+    <input type="text" id="email" required minlength="8"
+        [(ngModel)]="order.email" name="email" #email="ngModel">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors.minlength">
+            Email must be at least eight characters long.
+        </div>
+        <div *ngIf="email.errors.required">
+            Please input email.
+        </div>
+    </div>
+    <label for="payment">Payment Type:</label>
+    <div *ngFor="let o of options">
+        <input type="radio" [value]="o" [id]="o" required
+            [(ngModel)]="order.payment" name="payment">
+        <label for={{o}}>{{o}}</label>
+    </div>
+    <button type="submit"
+        [disabled]="!orderForm.form.valid">Submit</button> 
+</form>
+</div>

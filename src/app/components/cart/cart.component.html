@@ -1,53 +1,29 @@
 <h1>Cart<h1>
-<h3>Total: {{cart.amount | currency}}</h3>
-<h3>Currently in Cart:</h3>
-<div class="product-container">
-    <ul *ngIf="cart.items.length > 0; else elseBlock" class="product-index">
-        <li *ngFor="let product of cart.items">
-            <h3 routerLink="/detail/{{product.id}}">{{product.name}}</h3>
-            <!-- <div>id: {{product.id}}</div> -->
-            <div>{{product.description}}</div>
-            <div>{{product.price | currency}}</div>
-            <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
-            <button (click)="delete(product)">Remove from Cart</button>
-        </li>
-    </ul>
-    <ng-template #elseBlock>No items in cart.</ng-template>
+<div *ngIf="!checkoutCompleted">
+    <h3>Total: {{cart.amount | currency}}</h3>
+    <h3>Currently in Cart:</h3>
+    <div class="product-container">
+        <ul *ngIf="cart.items.length > 0; else elseBlock" class="product-index">
+            <li *ngFor="let product of cart.items">
+                <h3 routerLink="/detail/{{product.id}}">{{product.name}}</h3>
+                <!-- <div>id: {{product.id}}</div> -->
+                <div>{{product.description}}</div>
+                <div>{{product.price | currency}}</div>
+                <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
+                <button (click)="delete(product)">Remove from Cart</button>
+            </li>
+        </ul>
+        <ng-template #elseBlock>No items in cart.</ng-template>
+    </div>
+    <button routerLink="">Return to Home</button>
+    <button (click)="checkout()">Checkout</button>
 </div>
-<button routerLink="">Return to Home</button>
-<button (click)="checkout()">Checkout</button>
-<form [hidden]="!checking_out" #orderForm="ngForm"
-    (ngSubmit)="onSubmit(orderForm.value)">
-    <div>
-        <label for="name">Name: </label>
-        <input type="text" id="name" name="name" required minlength="2"
-            [(ngModel)]="order.name" #name="ngModel">
-        <div *ngIf="!name.valid && (name.dirty || name.touched)">
-            <div *ngIf="name.errors.minlength">
-                Name must be at least two characters long.
-            </div>
-            <div *ngIf="name.errors.required">
-                Please input name.
-            </div>
-        </div>
-    </div>
-    <label for="email">Email: </label>
-    <input type="text" id="email" required minlength="8"
-        [(ngModel)]="order.email" name="email" #email="ngModel">
-    <div *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors.minlength">
-            Email must be at least eight characters long.
-        </div>
-        <div *ngIf="email.errors.required">
-            Please input email.
-        </div>
-    </div>
-    <label for="payment">Payment Type:</label>
-    <div *ngFor="let o of options">
-        <input type="radio" [value]="o" [id]="o" required
-            [(ngModel)]="order.payment" name="payment">
-        <label for={{o}}>{{o}}</label>
-    </div>
-    <button type="submit"
-        [disabled]="!orderForm.form.valid">Submit</button> 
-</form>
+<app-order-form
+    [display]="checkingOut" 
+    [options]="options"
+    [order]="order"
+    (customerNameEvent)="getName($event)"></app-order-form>
+<app-confirmation 
+    [completed]="checkoutCompleted" 
+    [name]="customerName"
+    [cart]="cart"></app-confirmation>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/product';
 import { Cart } from '../../cart';
 import { CartService } from '../../cart.service';
-import { Router } from "@angular/router";
 import { Order } from 'src/app/order';
 
 @Component({
@@ -14,7 +13,8 @@ export class CartComponent implements OnInit {
 
   cart: Cart;
 
-  checking_out: boolean = false;
+  checkingOut: boolean = false;
+
   order: Order = {
       name: '',
       email: '',
@@ -22,9 +22,12 @@ export class CartComponent implements OnInit {
   };
 
   options: string[] = ['Credit Card', 'Google Wallet', 'Apple Pay'];
+  checkoutCompleted: boolean = false;
+  customerName: string;
+
   constructor(
-      private cartService: CartService,
-      private router: Router) { }
+      private cartService: CartService
+        ) { }
 
   ngOnInit(): void {
     this.getCart();
@@ -35,7 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void{
-    this.checking_out = true;
+    this.checkingOut = true;
   }
 
   delete(product: Product): void{
@@ -47,9 +50,9 @@ export class CartComponent implements OnInit {
     alert(`You removed ${product.name} from the cart.`)
   }
 
-  onSubmit(orderForm: Order): void {
-      console.log(`submitted ${orderForm.name}, 
-        ${orderForm.email}, ${orderForm.payment}`);
-      this.router.navigate(['cart/success']);
+  getName(name: string){
+      this.customerName = name;
+      this.checkingOut = false;
+      this.checkoutCompleted = true;
   }
 }

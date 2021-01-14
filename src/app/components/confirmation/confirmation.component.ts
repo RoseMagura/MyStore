@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Cart } from 'src/app/cart';
 import { CartService } from 'src/app/cart.service';
 
@@ -8,13 +8,13 @@ import { CartService } from 'src/app/cart.service';
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
+  @Input() name: string;
+  @Input() completed: boolean;
+  @Input() cart: Cart;
 
   constructor(private cartService: CartService) { }
 
-  cart: Cart;
-  
   ngOnInit(): void {
-    this.cart = this.cartService.getCart();
   }
 
   clearCart(): void { 
