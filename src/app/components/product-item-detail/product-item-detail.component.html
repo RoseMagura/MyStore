@@ -8,7 +8,7 @@
         <div class="row">{{product.description}}</div>
         <div class="row">{{product.price | currency}}</div>
         <img class="row" src={{product.url}} alt={{product.name}}/>
-        <button class="row" (click)="addToCart(product)">Add To Cart</button>
+        <button mat-button color="accent" class="row" (click)="addToCart(product)">Add To Cart</button>
     </ul>
 </div>
-<button routerLink="">Return to Home</button>
+<button mat-button color="accent" routerLink="">Return to Home</button>

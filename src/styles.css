@@ -7,4 +7,9 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 h1 {
     background-color: #ff9933;
     color: white;
+    padding: 5px;
 }
+
+/* button {
+    color: #33cccc;
+} */
