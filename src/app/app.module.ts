@@ -15,8 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     CommonModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

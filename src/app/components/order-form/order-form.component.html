@@ -3,7 +3,7 @@
         (ngSubmit)="onSubmit(orderForm.value)">
     <mat-form-field>
         <label for="name">Name: </label>
-        <input type="text" id="name" name="name" required minlength="2"
+        <input matInput type="text" id="name" name="name" required minlength="2"
             [(ngModel)]="order.name" #name="ngModel">
         <div *ngIf="!name.valid && (name.dirty || name.touched)">
             <div *ngIf="name.errors.minlength">
@@ -16,7 +16,7 @@
     </mat-form-field>
     <mat-form-field>
         <label for="email">Email: </label>
-        <input type="text" id="email" required minlength="8"
+        <input matInput type="text" id="email" required minlength="8"
             [(ngModel)]="order.email" name="email" #email="ngModel">
         <div *ngIf="email.invalid && (email.dirty || email.touched)">
             <div *ngIf="email.errors.minlength">
@@ -27,14 +27,15 @@
             </div>
         </div>
     </mat-form-field>
-    <label for="payment">Payment Type:</label>
-    <div *ngFor="let o of options">
-        <input type="radio" [value]="o" [id]="o" required
-            [(ngModel)]="order.payment" name="payment">
-        <label for={{o}}>{{o}}</label>
+    <div>
+        <label>Payment Type:</label>
+        <mat-radio-group [(ngModel)]="order.payment" name="payment">
+            <mat-radio-button *ngFor="let o of options" [value]="o">
+                {{o}}
+            </mat-radio-button>
+        </mat-radio-group>
     </div>
-    <button type="submit"
-        [disabled]="!orderForm.form.valid">Submit</button> 
+    <button type="submit" [disabled]="!orderForm.form.valid">Submit</button> 
 </form>
 
 </div>
