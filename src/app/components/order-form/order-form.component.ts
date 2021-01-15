@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { Order } from 'src/app/order';
 
-
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
@@ -21,9 +20,6 @@ export class OrderFormComponent implements OnInit {
   }
 
   onSubmit(orderForm: Order): void {
-    // console.log(`submitted ${orderForm.name}, 
-    //   ${orderForm.email}, ${orderForm.payment}`);
     this.customerNameEvent.emit(orderForm.name);
 }
-
 }

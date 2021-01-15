@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
