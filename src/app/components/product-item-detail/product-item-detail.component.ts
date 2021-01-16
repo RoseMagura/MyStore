@@ -11,7 +11,7 @@ import { Cart } from '../../interfaces/cart';
   styleUrls: ['./product-item-detail.component.css'],
 })
 export class ProductItemDetailComponent implements OnInit {
-  //initialize product and cart with correct type
+  // Initialize product and cart with correct type
   product: Product;
   cart: Cart;
 
@@ -41,7 +41,7 @@ export class ProductItemDetailComponent implements OnInit {
 
   addToCart(product: Product): void {
     const updatedCart: Cart = this.cart;
-    updatedCart.num_items++;
+    updatedCart.numItems++;
     updatedCart.items.push(product);
     updatedCart.amount += product.price;
     this.cartService.setCart(updatedCart);

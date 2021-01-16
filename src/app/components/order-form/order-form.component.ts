@@ -8,7 +8,7 @@ import { Order } from 'src/app/interfaces/order';
   styleUrls: ['./order-form.component.css'],
 })
 export class OrderFormComponent implements OnInit {
-  @Input() display: boolean = false;
+  @Input() display = false;
   @Input() options: string[];
   @Input() order: Order;
 

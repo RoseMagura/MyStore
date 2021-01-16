@@ -12,7 +12,7 @@ import { Order } from 'src/app/interfaces/order';
 export class CartComponent implements OnInit {
   cart: Cart;
 
-  checkingOut: boolean = false;
+  checkingOut = false;
 
   order: Order = {
     name: '',
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   };
 
   options: string[] = ['Credit Card', 'Google Wallet', 'Apple Pay'];
-  checkoutCompleted: boolean = false;
+  checkoutCompleted = false;
   customerName: string;
 
   constructor(private cartService: CartService) {}
@@ -40,14 +40,14 @@ export class CartComponent implements OnInit {
 
   delete(product: Product): void {
     const updatedCart: Cart = this.cart;
-    updatedCart.num_items--;
+    updatedCart.numItems--;
     updatedCart.items.splice(this.cart.items.indexOf(product), 1);
     updatedCart.amount -= product.price;
     this.cartService.setCart(updatedCart);
     alert(`You removed ${product.name} from the cart.`);
   }
 
-  getName(name: string) {
+  getName(name: string): void {
     this.customerName = name;
     this.checkingOut = false;
     this.checkoutCompleted = true;

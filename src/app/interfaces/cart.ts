@@ -3,16 +3,16 @@ import { Product } from './product';
 export interface Cart {
   amount: number;
   items: Product[];
-  num_items: number;
+  numItems: number;
 }
 
 export class MyCart implements Cart {
   amount: number;
   items: Product[];
-  num_items: number;
-  constructor(amount: number, items: Product[], num_items: number) {
+  numItems: number;
+  constructor(amount: number, items: Product[], numItems: number) {
     this.amount = amount;
     this.items = items;
-    this.num_items = num_items;
+    this.numItems = numItems;
   }
 }

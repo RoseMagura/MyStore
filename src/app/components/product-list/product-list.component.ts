@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product): void {
     const updatedCart: Cart = this.cart;
-    updatedCart.num_items++;
+    updatedCart.numItems++;
     updatedCart.items.push(product);
     updatedCart.amount += product.price;
     this.cartService.setCart(updatedCart);
