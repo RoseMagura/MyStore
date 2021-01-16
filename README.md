@@ -1,10 +1,27 @@
 # Mystore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
+This is an Angular and Typescript-based e-commerce application. Users
+can browse items, add them to the cart, and checkout with an easy-to-use
+form. This project uses the data.json provided through Udacity to load
+the products available. 
 
-## Development server
+Users can easily navigate through this single-page application by using
+either URL endpoints or the various convenient buttons. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project requires the latest version of Node and npm.
+
+## Installation
+
+To install, just run `npm install` in the Node terminal. This will 
+download all of the necessary dependencies.
+
+## Running Development server
+
+To run the Mystore application, use `ng serve --open` in a terminal.
+The `--open` flag is optional and will open the app in your default 
+browser. If you wish to open it manually, just enter 
+`http://localhost:4200/` into your browser of choice. It will reload
+whenever you change the files.
 
 ## Code scaffolding
 
@@ -17,6 +34,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+Note: Unit tests are not currently implemented for this project.
 
 ## Running end-to-end tests
 
