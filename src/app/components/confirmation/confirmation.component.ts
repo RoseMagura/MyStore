@@ -5,19 +5,18 @@ import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.css']
+  styleUrls: ['./confirmation.component.css'],
 })
 export class ConfirmationComponent implements OnInit {
   @Input() name: string;
   @Input() completed: boolean;
   @Input() cart: Cart;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  clearCart(): void { 
+  clearCart(): void {
     this.cartService.emptyCart();
   }
 }

@@ -1,5 +1,5 @@
-export interface Order{
-    name: string,
-    email: string,
-    payment: string
+export interface Order {
+  name: string;
+  email: string;
+  payment: string;
 }

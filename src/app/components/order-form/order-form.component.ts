@@ -5,7 +5,7 @@ import { Order } from 'src/app/interfaces/order';
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
-  styleUrls: ['./order-form.component.css']
+  styleUrls: ['./order-form.component.css'],
 })
 export class OrderFormComponent implements OnInit {
   @Input() display: boolean = false;
@@ -13,13 +13,12 @@ export class OrderFormComponent implements OnInit {
   @Input() order: Order;
 
   @Output() customerNameEvent = new EventEmitter<string>();
-  
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   onSubmit(orderForm: Order): void {
     this.customerNameEvent.emit(orderForm.name);
-}
+  }
 }

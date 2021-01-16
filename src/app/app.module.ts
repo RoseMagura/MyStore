@@ -14,7 +14,7 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -25,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     ConfirmationComponent,
     ProductItemDetailComponent,
     ProductListComponent,
-    OrderFormComponent
+    OrderFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +38,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     BrowserAnimationsModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { Cart, MyCart } from '../interfaces/cart';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
   private cart: Cart;
 
-  constructor() { }
+  constructor() {}
 
   getCart(): Cart {
-    if(this.cart === undefined) {
-        this.cart = new MyCart(0, [], 0);
+    if (this.cart === undefined) {
+      this.cart = new MyCart(0, [], 0);
     }
     return this.cart;
   }
@@ -22,6 +21,6 @@ export class CartService {
   }
 
   emptyCart(): void {
-      this.cart = new MyCart(0, [], 0);
+    this.cart = new MyCart(0, [], 0);
   }
 }

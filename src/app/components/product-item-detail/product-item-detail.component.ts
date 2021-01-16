@@ -8,19 +8,18 @@ import { Cart } from '../../interfaces/cart';
 @Component({
   selector: 'app-product-item-detail',
   templateUrl: './product-item-detail.component.html',
-  styleUrls: ['./product-item-detail.component.css']
+  styleUrls: ['./product-item-detail.component.css'],
 })
 export class ProductItemDetailComponent implements OnInit {
-
   //initialize product and cart with correct type
   product: Product;
   cart: Cart;
-  
+
   constructor(
-      private route: ActivatedRoute,
-      private productService: ProductService,
-      private cartService: CartService
-  ) { }
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.getProduct();
@@ -28,15 +27,16 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   getProduct(): void {
-      // get id from the url params
-      const id = +this.route.snapshot.paramMap.get('id');
-      // get all products and then select the index for the correct id
-      this.productService.getProducts()
-        .subscribe(products => this.product = products[id - 1]);
+    // get id from the url params
+    const id = +this.route.snapshot.paramMap.get('id');
+    // get all products and then select the index for the correct id
+    this.productService
+      .getProducts()
+      .subscribe((products) => (this.product = products[id - 1]));
   }
 
   getCart(): void {
-      this.cart = this.cartService.getCart();
+    this.cart = this.cartService.getCart();
   }
 
   addToCart(product: Product): void {

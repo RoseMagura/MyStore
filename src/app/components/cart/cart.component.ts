@@ -7,27 +7,24 @@ import { Order } from 'src/app/interfaces/order';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-
   cart: Cart;
 
   checkingOut: boolean = false;
 
   order: Order = {
-      name: '',
-      email: '',
-      payment: ''
+    name: '',
+    email: '',
+    payment: '',
   };
 
   options: string[] = ['Credit Card', 'Google Wallet', 'Apple Pay'];
   checkoutCompleted: boolean = false;
   customerName: string;
 
-  constructor(
-      private cartService: CartService
-        ) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getCart();
@@ -37,22 +34,22 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getCart();
   }
 
-  checkout(): void{
+  checkout(): void {
     this.checkingOut = true;
   }
 
-  delete(product: Product): void{
+  delete(product: Product): void {
     const updatedCart: Cart = this.cart;
     updatedCart.num_items--;
     updatedCart.items.splice(this.cart.items.indexOf(product), 1);
     updatedCart.amount -= product.price;
     this.cartService.setCart(updatedCart);
-    alert(`You removed ${product.name} from the cart.`)
+    alert(`You removed ${product.name} from the cart.`);
   }
 
-  getName(name: string){
-      this.customerName = name;
-      this.checkingOut = false;
-      this.checkoutCompleted = true;
+  getName(name: string) {
+    this.customerName = name;
+    this.checkingOut = false;
+    this.checkoutCompleted = true;
   }
 }

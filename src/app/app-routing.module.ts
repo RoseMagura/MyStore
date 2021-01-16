@@ -6,15 +6,15 @@ import { ProductItemDetailComponent } from './components/product-item-detail/pro
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 const routes: Routes = [
-    { path: 'cart', component: CartComponent},
-    { path: 'products', component: ProductListComponent},
-    { path: 'detail/:id', component: ProductItemDetailComponent},
-    { path: '', redirectTo: '/products', pathMatch: 'full'},
-    { path: 'cart/success', pathMatch: 'full', component: ConfirmationComponent}
+  { path: 'cart', component: CartComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: 'detail/:id', component: ProductItemDetailComponent },
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: 'cart/success', pathMatch: 'full', component: ConfirmationComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
