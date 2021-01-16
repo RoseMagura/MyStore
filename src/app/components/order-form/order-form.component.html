@@ -1,4 +1,4 @@
-<div *ngIf="display">
+<div *ngIf="display" class="complete">
     <form #orderForm="ngForm"
         (ngSubmit)="onSubmit(orderForm.value)">
     <mat-form-field>
@@ -37,5 +37,4 @@
     </div>
     <button mat-button color="accent" type="submit" [disabled]="!orderForm.form.valid">Submit</button> 
 </form>
-
 </div>

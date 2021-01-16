@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { Order } from 'src/app/order';
+import { Order } from 'src/app/interfaces/order';
 
 @Component({
   selector: 'app-order-form',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cart } from 'src/app/cart';
-import { CartService } from 'src/app/cart.service';
+import { Cart } from 'src/app/interfaces/cart';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-confirmation',
