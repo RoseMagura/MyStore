@@ -1,18 +1,26 @@
 <h2>Product List</h2>
-<h2 routerLink="/cart">Cart
-    <div *ngIf="cart">{{cart.amount | currency}}</div>
-</h2>
+<button mat-button color="accent" routerLink="/cart">
+  Cart
+  {{ cart.amount | currency }}
+</button>
 <div class="product-container">
-    <ul class="product-index">
-        <li *ngFor="let product of products">
-            <h3 routerLink="/detail/{{product.id}}">
-                {{product.name}}
-            </h3>
-            <div id="ID">ID: {{product.id}}</div>
-            <div>{{product.description}}</div>
-            <div>{{product.price | currency}}</div>
-            <img src={{product.url}} alt={{product.name}} width="100" height="100"/>
-            <button mat-button color="accent" (click)="addToCart(product)">Add To Cart</button>
-        </li>
-    </ul>
+  <ul class="product-index">
+    <li *ngFor="let product of products">
+      <h3 routerLink="/detail/{{ product.id }}">
+        {{ product.name }}
+      </h3>
+      <div id="ID">ID: {{ product.id }}</div>
+      <div>{{ product.description }}</div>
+      <div>{{ product.price | currency }}</div>
+      <img
+        src="{{ product.url }}"
+        alt="{{ product.name }}"
+        width="100"
+        height="100"
+      />
+      <button mat-button color="accent" (click)="addToCart(product)">
+        Add To Cart
+      </button>
+    </li>
+  </ul>
 </div>

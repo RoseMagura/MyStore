@@ -1,14 +1,17 @@
-<h2 routerLink="/cart">Cart
-    <div *ngIf="cart"></div>{{cart.amount | currency}}
-</h2>
+<button mat-button color="accent" routerLink="/cart">
+  Cart
+  {{ cart.amount | currency }}
+</button>
 <div *ngIf="product">
-    <ul>
-        <h3 class="row">{{product.name}}</h3>
-        <div class="row">ID: {{product.id}}</div>
-        <div class="row">{{product.description}}</div>
-        <div class="row">{{product.price | currency}}</div>
-        <img class="row" src={{product.url}} alt={{product.name}}/>
-        <button mat-button color="accent" class="row" (click)="addToCart(product)">Add To Cart</button>
-    </ul>
+  <ul>
+    <h3 class="row">{{ product.name }}</h3>
+    <div class="row">ID: {{ product.id }}</div>
+    <div class="row">{{ product.description }}</div>
+    <div class="row">{{ product.price | currency }}</div>
+    <img class="row" src="{{ product.url }}" alt="{{ product.name }}" />
+    <button mat-button color="accent" class="row" (click)="addToCart(product)">
+      Add To Cart
+    </button>
+  </ul>
 </div>
 <button mat-button color="accent" routerLink="">Return to Home</button>
