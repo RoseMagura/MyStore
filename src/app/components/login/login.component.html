@@ -1,0 +1,150 @@
+<div class="complete" *ngIf="signingIn">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <mat-form-field>
+      <label for="firstName">First Name: </label>
+      <input
+        matInput
+        type="text"
+        id="firstName"
+        name="firstName"
+        required
+        minlength="2"
+        [(ngModel)]="loginForm.firstName"
+        #name="ngModel"
+      />
+
+      <div *ngIf="!name.valid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.minlength">
+          Name must be at least two characters long.
+        </div>
+        <div *ngIf="name.errors.required">Please input first name.</div>
+      </div>
+    </mat-form-field>
+    <mat-form-field>
+      <label for="lastName">Last Name: </label>
+      <input
+        matInput
+        type="text"
+        id="lastName"
+        name="lastName"
+        required
+        minlength="2"
+        [(ngModel)]="loginForm.lastName"
+        #lastName="ngModel"
+      />
+      <div *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
+        <div *ngIf="lastName.errors.minlength">
+          Last name must be at least two characters long.
+        </div>
+        <div *ngIf="lastName.errors.required">Please input last name.</div>
+      </div>
+    </mat-form-field>
+<mat-form-field>
+      <label for="password">Password: </label>
+      <input
+        matInput
+        type="text"
+        id="password"
+        name="password"
+        required
+        minlength="8"
+        [(ngModel)]="loginForm.password"
+        #password="ngModel"
+      />
+      <div *ngIf="!password.valid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors.minlength">
+          Password must be at least eight characters long.
+        </div>
+        <div *ngIf="password.errors.required">Please input password.</div>
+      </div>
+</mat-form-field>
+    <button
+      mat-button
+      color="accent"
+      type="submit"
+      [disabled]="!loginForm.form.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+<div>
+    <button
+    mat-button
+    color="accent"
+    type="submit"
+    (click)="createUser()"
+    >
+    Sign Up
+    </button>
+    <div *ngIf="creating">
+        <form #signUpForm="ngForm" (ngSubmit)="onPostUser(signUpForm.value)">
+            <mat-form-field>
+              <label for="firstName">First Name: </label>
+              <input
+                matInput
+                type="text"
+                id="firstName"
+                name="firstName"
+                required
+                minlength="2"
+                [(ngModel)]="signUpForm.firstName"
+                #name="ngModel"
+              />
+        
+              <div *ngIf="!name.valid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors.minlength">
+                  Name must be at least two characters long.
+                </div>
+                <div *ngIf="name.errors.required">Please input first name.</div>
+              </div>
+            </mat-form-field>
+            <mat-form-field>
+              <label for="lastName">Last Name: </label>
+              <input
+                matInput
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                minlength="2"
+                [(ngModel)]="signUpForm.lastName"
+                #lastName="ngModel"
+              />
+              <div *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
+                <div *ngIf="lastName.errors.minlength">
+                  Last name must be at least two characters long.
+                </div>
+                <div *ngIf="lastName.errors.required">Please input last name.</div>
+              </div>
+            </mat-form-field>
+        <mat-form-field>
+              <label for="password">Password: </label>
+              <input
+                matInput
+                type="text"
+                id="password"
+                name="password"
+                required
+                minlength="8"
+                [(ngModel)]="signUpForm.password"
+                #password="ngModel"
+              />
+              <div *ngIf="!password.valid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least eight characters long.
+                </div>
+                <div *ngIf="password.errors.required">Please input password.</div>
+              </div>
+        </mat-form-field>
+            <button
+              mat-button
+              color="accent"
+              type="submit"
+              [disabled]="!signUpForm.form.valid"
+            >
+              Submit
+            </button>
+          </form>
+    </div>
+</div>
