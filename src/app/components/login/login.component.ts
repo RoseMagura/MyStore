@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { User } from 'src/app/interfaces/User';
+import { User } from '../../interfaces/User';
+import { UserService } from '../../services/user.service';
+import * as bcrypt from 'bcrypt';
 
 @Component({
     selector: 'login',
@@ -8,17 +10,35 @@ import { User } from 'src/app/interfaces/User';
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor() {}
+  constructor(private userService: UserService) {}
 
+  users: User[];
   user: User;
   signingIn = true;
   creating = false;
   
   @Output() loginEvent = new EventEmitter<string>();
 
+  ngOnInit(): void {
+      this.getUsers();
+  }
+
+  getUsers(): void {
+    this.userService.getUsers().subscribe((users) => (this.users = users));
+  }
+
   onSubmit(loginForm: any): void {
-    // this.loginEvent.emit(orderForm);
     console.log(loginForm);
+    console.log(loginForm.firstName);
+    this.users.forEach(async (user) => {
+        if(user.first_name === loginForm.firstName && user.last_name === loginForm.lastName){
+            console.log('MATCH');
+            const hashedPwd = await bcrypt.hash(loginForm.password, 10);
+            // console.log(hashedPwd);
+            // console.log(user.password === hashedPwd);
+        };
+    });
+
   }
 
   createUser(): void {
