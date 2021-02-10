@@ -14,15 +14,12 @@ export class LoginComponent {
   signingIn = true;
   creating = false;
   authMsg: string;
-  error = false;
 
   onSubmit(loginForm: any): void {
     console.log(loginForm);
     this.userService
       .login(loginForm)
       .subscribe((response) => {
-        console.log(response.body['message'], response.body['success']);
-        this.error = !response.body['success'];
         this.authMsg = response.body['message'];
       }
           );

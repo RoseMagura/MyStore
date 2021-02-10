@@ -5,6 +5,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 const routes: Routes = [
   { path: 'cart', component: CartComponent },
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
   { path: 'cart/success', pathMatch: 'full', component: ConfirmationComponent },
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

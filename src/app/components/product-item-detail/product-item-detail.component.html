@@ -5,7 +5,7 @@
 <div *ngIf="product">
   <ul>
     <h3 class="row">{{ product.name }}</h3>
-    <div class="row">ID: {{ product.id }}</div>
+    <div class="row">ID: {{ product.product_id }}</div>
     <div class="row">{{ product.description }}</div>
     <div class="row">{{ product.price | currency }}</div>
     <img class="row" src="{{ product.url }}" alt="{{ product.name }}" />
@@ -14,4 +14,4 @@
     </button>
   </ul>
 </div>
-<button mat-button color="accent" routerLink="">Return to Home</button>
+<button mat-button color="accent" routerLink="/products">Return to Home</button>

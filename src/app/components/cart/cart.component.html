@@ -7,7 +7,7 @@
       <div class="product-container">
         <ul *ngIf="cart.items.length > 0; else elseBlock" class="product-index">
           <li *ngFor="let product of cart.items" class="cart-item">
-            <h3 class="row" routerLink="/detail/{{ product.id }}">
+            <h3 class="row" routerLink="/detail/{{ product.product_id }}">
               {{ product.name }}
             </h3>
             <div class="row">{{ product.description }}</div>
@@ -33,7 +33,7 @@
           <div class="empty-cart-message">No items in cart.</div>
         </ng-template>
       </div>
-      <button mat-button color="accent" routerLink="">Return to Home</button>
+      <button mat-button color="accent" routerLink="/products">Return to Home</button>
       <button
         mat-button
         color="accent"

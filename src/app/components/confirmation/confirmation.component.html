@@ -6,7 +6,7 @@
   <div>
     <ul class="confirmation-items">
       <li *ngFor="let product of cart.items" class="confirmation-items">
-        <h3 routerLink="/detail/{{ product.id }}">
+        <h3 routerLink="/detail/{{ product.product_id }}">
           {{ product.name }}
         </h3>
         <div>{{ product.description }}</div>
@@ -20,7 +20,7 @@
       </li>
     </ul>
   </div>
-  <button mat-button color="accent" routerLink="" (click)="clearCart()">
+  <button mat-button color="accent" routerLink="/products" (click)="clearCart()">
     Return Home
   </button>
 </div>

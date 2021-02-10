@@ -6,10 +6,10 @@
 <div class="product-container">
   <ul class="product-index">
     <li *ngFor="let product of products">
-      <h3 routerLink="/detail/{{ product.id }}">
+      <h3 routerLink="/detail/{{ product.product_id }}">
         {{ product.name }}
       </h3>
-      <div id="ID">ID: {{ product.id }}</div>
+      <div id="ID">ID: {{ product.product_id }}</div>
       <div>{{ product.description }}</div>
       <div>{{ product.price | currency }}</div>
       <img
