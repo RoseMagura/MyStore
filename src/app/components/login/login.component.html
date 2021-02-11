@@ -1,4 +1,5 @@
 <div class="complete" *ngIf="signingIn">
+    <h2>Log In:</h2>
   <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
     <mat-form-field>
       <label for="firstName">First Name: </label>
@@ -79,10 +80,12 @@
     color="accent"
     type="submit"
     (click)="createUser()"
+    *ngIf="!creating"
     >
     Sign Up
     </button>
     <div *ngIf="creating">
+        <h2>Creating New User:</h2>
         <form #signUpForm="ngForm" (ngSubmit)="onPostUser(signUpForm.value)">
             <mat-form-field>
               <label for="firstName">First Name: </label>
@@ -151,5 +154,15 @@
               Submit
             </button>
           </form>
+        <div>
+            {{ creationRes }}
+        </div>
+        <button
+        mat-button
+        color="accent"
+        (click)="returnToLogin()"
+      >
+        Login
+      </button>
     </div>
 </div>

@@ -14,8 +14,9 @@ export class LoginComponent {
   signingIn = true;
   creating = false;
   authMsg: string;
+  creationRes: object;
 
-  onSubmit(loginForm: any): void {
+  onSubmit(loginForm: User): void {
     const fullName = loginForm.firstName + loginForm.lastName;
     console.log(fullName);
     this.userService.login(loginForm).subscribe((response) => {
@@ -30,10 +31,14 @@ export class LoginComponent {
   createUser(): void {
     this.signingIn = false;
     this.creating = true;
-    console.log(this.creating);
   }
 
-  onPostUser(form: any): void {
-    console.log('CREATING USER', form);
+  onPostUser(newUser: User): void {
+    this.userService.signUp(newUser).subscribe(res => this.creationRes = res.body);
+  }
+
+  returnToLogin(): void {
+    this.signingIn = true;
+    this.creating = false;
   }
 }
