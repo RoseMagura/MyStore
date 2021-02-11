@@ -4,11 +4,19 @@ import { Cart } from '../../interfaces/cart';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 
+export const checkCred = () => {
+    console.log(localStorage.getItem('currentUser') === null);
+    if(localStorage.getItem('currentUser') === null) {
+        location.pathname = '/login';
+    }
+}
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
+
 export class ProductListComponent implements OnInit {
   products: Product[];
   cart: Cart;
@@ -21,6 +29,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getCart();
+    checkCred();
   }
 
   getProducts(): void {

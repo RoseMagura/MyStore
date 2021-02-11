@@ -16,13 +16,15 @@ export class LoginComponent {
   authMsg: string;
 
   onSubmit(loginForm: any): void {
-    console.log(loginForm);
-    this.userService
-      .login(loginForm)
-      .subscribe((response) => {
-        this.authMsg = response.body['message'];
+    const fullName = loginForm.firstName + loginForm.lastName;
+    console.log(fullName);
+    this.userService.login(loginForm).subscribe((response) => {
+      this.authMsg = response.body['message'];
+      if(response.body['success']){
+          localStorage.setItem('currentUser', fullName);
+          location.pathname = '/products';
       }
-          );
+    });
   }
 
   createUser(): void {
@@ -34,5 +36,4 @@ export class LoginComponent {
   onPostUser(form: any): void {
     console.log('CREATING USER', form);
   }
-
 }

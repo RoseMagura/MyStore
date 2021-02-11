@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interfaces/product';
 import { Cart } from '../../interfaces/cart';
+import { checkCred } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -22,6 +23,7 @@ export class ProductItemDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    checkCred();
     this.getProduct();
     this.getCart();
   }

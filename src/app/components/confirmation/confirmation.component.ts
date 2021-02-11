@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cart } from 'src/app/interfaces/cart';
-import { CartService } from 'src/app/services/cart.service';
+import { Cart } from '../../interfaces/cart';
+import { CartService } from '../../services/cart.service';
+import { checkCred } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-confirmation',
@@ -14,7 +15,9 @@ export class ConfirmationComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    checkCred();
+  }
 
   clearCart(): void {
     this.cartService.emptyCart();
