@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MyStore';
+  currentUser: string;
+
+  ngOnInit() {
+    this.currentUser = localStorage.getItem('currentUser');
+  }
+
+  logOut() {
+    localStorage.removeItem('currentUser');
+    location.pathname = '/login';
+  }
 }

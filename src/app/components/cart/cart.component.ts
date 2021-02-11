@@ -3,7 +3,7 @@ import { Product } from '../../interfaces/product';
 import { Cart } from '../../interfaces/cart';
 import { CartService } from '../../services/cart.service';
 import { Order } from '../../interfaces/order';
-import { checkCred } from '../product-list/product-list.component';
+import { checkCred, logOut } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-cart',

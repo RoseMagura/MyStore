@@ -33,7 +33,9 @@
           <div class="empty-cart-message">No items in cart.</div>
         </ng-template>
       </div>
-      <button mat-button color="accent" routerLink="/products">Return to Home</button>
+      <button mat-button color="accent" routerLink="/products">
+        Return to Home
+      </button>
       <button
         mat-button
         color="accent"
@@ -42,6 +44,7 @@
       >
         Checkout
       </button>
+      <button mat-button color="accent" (click)="logOut()">Log Out</button>
     </div>
     <app-order-form
       [display]="checkingOut"
