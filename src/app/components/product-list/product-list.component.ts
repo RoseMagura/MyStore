@@ -5,7 +5,6 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 
 export const checkCred = () => {
-    // console.log(localStorage.getItem('currentUser') === null);
     if(localStorage.getItem('currentUser') === null) {
         location.pathname = '/login';
     }
@@ -48,11 +47,8 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    const updatedCart: Cart = this.cart;
-    updatedCart.numItems++;
-    updatedCart.items.push(product);
-    updatedCart.amount += product.price;
-    this.cartService.setCart(updatedCart);
+    const userId = localStorage.getItem('userId');
+    this.cartService.addToCart(product, parseInt(userId));
     alert('Successfully added item to cart!');
   }
 }

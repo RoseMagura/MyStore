@@ -41,11 +41,7 @@ export class CartComponent implements OnInit {
   }
 
   delete(product: Product): void {
-    const updatedCart: Cart = this.cart;
-    updatedCart.numItems--;
-    updatedCart.items.splice(this.cart.items.indexOf(product), 1);
-    updatedCart.amount -= product.price;
-    this.cartService.setCart(updatedCart);
+    this.cartService.removeFromCart(product);
     alert(`You removed ${product.name} from the cart.`);
   }
 

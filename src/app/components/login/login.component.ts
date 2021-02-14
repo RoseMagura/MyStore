@@ -18,11 +18,13 @@ export class LoginComponent {
 
   onSubmit(loginForm: User): void {
     const fullName = loginForm.firstName + loginForm.lastName;
-    console.log(fullName);
     this.userService.login(loginForm).subscribe((response) => {
       this.authMsg = response.body['message'];
       if(response.body['success']){
+          const userId = response.body['message'].split('(')[1].split(')')[0];
           localStorage.setItem('currentUser', fullName);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('token', response.body['token']);
           location.pathname = '/products';
       }
     });
