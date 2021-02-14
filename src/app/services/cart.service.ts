@@ -53,7 +53,8 @@ export class CartService {
     } 
     else {
         console.log('updating', this.orderId);
-        this.http.put(`${this.dataUrl}/${this.orderId}`, this.cart.items).subscribe(response => console.log(response));   
+        this.http.put(`${this.dataUrl}/${this.orderId}?action=add`, {'numProducts': this.cart.numItems, 'toAdd': product['product_id']})
+            .subscribe(response => console.log(response));   
     }
     return this.cart;
   }
@@ -64,10 +65,9 @@ export class CartService {
     this.cart.amount -= Number(product.price);
     console.log('Editing order #', this.orderId);
     console.log(this.cart);
-    // send request to backend to reduce numProducts from order
-    const url = `${this.dataUrl}/${this.orderId}`;
-    this.http.put(url, this.cart.items).subscribe(response => console.log(response));   
-    // send request to backend to remove product from order_products table
+    // send request to backend to edit order
+    const url = `${this.dataUrl}/${this.orderId}?action=remove`;
+    this.http.put(url, {'numProducts': this.cart.numItems, 'toDelete': product['product_id']}).subscribe(response => console.log(response));   
     return this.cart;
   }
 
