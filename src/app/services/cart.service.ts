@@ -33,7 +33,6 @@ export class CartService {
     console.log(updatedCart);
 
     if (updatedCart.numItems === 1) {
-        console.log('creating new order from scratch');
       // send request to backend to create order
       this.http
         .post(
@@ -52,7 +51,6 @@ export class CartService {
         });
     } 
     else {
-        console.log('updating', this.orderId);
         this.http.put(`${this.dataUrl}/${this.orderId}?action=add`, {'numProducts': this.cart.numItems, 'toAdd': product['product_id']})
             .subscribe(response => console.log(response));   
     }
@@ -63,15 +61,20 @@ export class CartService {
     this.cart.numItems--;
     this.cart.items.splice(this.cart.items.indexOf(product), 1);
     this.cart.amount -= Number(product.price);
-    console.log('Editing order #', this.orderId);
-    console.log(this.cart);
     // send request to backend to edit order
     const url = `${this.dataUrl}/${this.orderId}?action=remove`;
-    this.http.put(url, {'numProducts': this.cart.numItems, 'toDelete': product['product_id']}).subscribe(response => console.log(response));   
+    this.http.put(url, {'numProducts': this.cart.numItems, 'toDelete': product['product_id']})
+        .subscribe(response => console.log(response));   
     return this.cart;
   }
 
   emptyCart(): void {
     this.cart = new MyCart(0, [], 0);
+  }
+
+  checkout(): void {
+      const url = `${this.dataUrl}/checkout/${this.orderId}`;
+      this.http.put(url, {}).subscribe(response => console.log(response));
+    //   this.emptyCart();
   }
 }

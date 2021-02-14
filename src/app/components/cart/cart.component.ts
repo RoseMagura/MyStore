@@ -3,7 +3,7 @@ import { Product } from '../../interfaces/product';
 import { Cart } from '../../interfaces/cart';
 import { CartService } from '../../services/cart.service';
 import { Order } from '../../interfaces/order';
-import { checkCred, logOut } from '../product-list/product-list.component';
+import { checkCred } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-cart',
@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
 
   checkout(): void {
     this.checkingOut = true;
+    this.cartService.checkout();
   }
 
   delete(product: Product): void {
