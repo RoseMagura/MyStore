@@ -3,12 +3,14 @@ import { Cart, MyCart } from '../interfaces/cart';
 import { Product } from '../interfaces/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Order } from '../interfaces/order';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cart: Cart;
+  private cart: Cart = new MyCart(0, [], 0);
   private dataUrl = 'http://localhost:3000/orders';
   private orderId: number;
 
@@ -16,21 +18,46 @@ export class CartService {
 
   getCart(): Cart {
     const userId = localStorage.getItem('userId');
-    this.http.get(`${this.dataUrl}/${userId}`,           {
+    const order = this.http.get(`${this.dataUrl}/${userId}/joined`,           
+    {
         withCredentials: true,
         headers: new HttpHeaders({
           'Set-Cookie': localStorage.getItem('token'),
         }),
-      }).subscribe((response: any[]) => {
+      }).pipe(
+          catchError((error) => {
+              if(error.status === 401) {
+                  alert('Token expired. Please log out and in again.');
+              }
+              console.error(error);
+              return of();
+          })
+      );
+      order
+      .subscribe((response: any[]) => {
           if(!String(response).includes('not found')) {
-          const currOrder = response.filter((order) => order.completed === false);
-          console.log(currOrder);
-        //   this.cart = new MyCart(0, [], currOrder.numItems);
+          const orders = response.filter((order) => order.completed === false);
+          const allItems = orders.filter((o) => o.order_id === orders[0].order_id);
+          const productList: Product[] = [];
+          let totalPrice = 0;
+          allItems.forEach((item) =>
+              this.http.get(`http://localhost:3000/products/${item.product_id}`)
+                .subscribe((prodDetails: any[]) => {
+                    console.log(prodDetails);
+                    prodDetails.forEach(p => {
+                        productList.push(p);
+                        totalPrice += p.price;
+                    });
+                    // this.cart = 
+                    // this.setCart(
+                    return new MyCart(totalPrice, productList, allItems.length);
+                    // );
+                    console.log('inside', this.cart);
+                })
+         ); 
         }
         });
-    if (this.cart === undefined) {
-      this.cart = new MyCart(0, [], 0);
-    }
+    console.log('outside', this.cart);
     return this.cart;
   }
 
@@ -57,10 +84,17 @@ export class CartService {
             }),
           }
         )
+        .pipe(
+            catchError((error) => {
+                if(error.status === 401) {
+                    alert('Token expired. Please log out and in again.');
+                }
+                console.error(error);
+                return of();
+            })
+        )
         .subscribe((res) => {
-          console.log('res', res);
           this.orderId = parseInt(res.toString().split('#')[1].split(' ')[0]);
-          console.log('set order id');
         });
     } else {
       console.log(this.orderId);
